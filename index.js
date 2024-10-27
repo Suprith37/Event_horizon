@@ -12,7 +12,7 @@ import xlsx from 'xlsx';
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { createConnection } from 'mysql';
-
+import dotenv  from "dotenv";
 
 
 import path from 'path'; 
@@ -20,7 +20,7 @@ import path from 'path';
 var __dirname = dirname(fileURLToPath(import.meta.url));
 
 
-
+dotenv.config();
 
 
 
@@ -59,8 +59,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 //  ------------------  Node Mailer  ---------------------
-const gmailEmail = 'suprithry37@gmail.com';
-const appPassword = 'qihpistcluukujzc';
+const gmailEmail = process.env.YOUR_EMAIL;
+const appPassword = process.env.YOUR_PASSKEY;
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
