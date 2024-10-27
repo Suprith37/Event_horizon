@@ -1,0 +1,239 @@
+
+
+body{
+  margin:0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height:150vh; */
+  font-family: 'Poppins', sans-serif;
+}
+
+.main{
+
+  height:60rem;
+  width:45rem;
+  background-color: aliceblue;
+  position:absolute;
+  top:10%;
+  left:27%;
+  border-radius:1rem;
+  /* display: flex;
+  justify-content: flex-start;
+  align-items: flex-start; */
+
+  
+}
+
+.all_to{
+ 
+  width:100%;
+  height:100vh;
+}
+
+.img34{
+  
+  height:165vh;
+  width:100%;
+
+  object-fit: cover;
+  /* filter: blur(3px); */
+
+}
+
+.header{ 
+ 
+
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+  color:whitesmoke;
+  height:4rem;
+  width:100%;
+  background-color: black;
+  position : relative;
+  
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  
+}
+
+.header h2{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.text{
+  margin-top:0.5rem;
+  font-size: 2rem;
+}
+
+.input-group{
+ 
+  position: relative;
+  left:17.5rem;
+  border: 10px solid red;
+}
+
+.h{
+  position:relative;
+  left:10rem;
+  border:5px sold red;
+  /* margin:5rem; */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+.type label{
+margin:0;
+padding:0;
+display: flex;
+flex-direction:row;
+border: 5px solid red;
+flex-shrink: 2;
+}
+
+.h input{
+
+  border: 1px solid black;
+
+  background: transparent;
+}
+
+.dh{
+  position:relative;
+  left:10rem;
+  /* border:1px solid black; */
+  /* margin:5rem; */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  height:5rem;
+  
+  
+}
+.dh input{
+  border:1px solid black;
+} 
+.dh label{
+  /* border:1px solid black; */
+  position:relative;
+  top:0.5rem;
+  left:1rem;
+}
+
+.h textarea{
+  border:1px solid black;
+}
+
+
+.d{
+  font-size: 2rem;
+  position:relative;
+  top:1rem;
+  left:20rem;
+  width:10rem;
+  height:3.5rem;
+ 
+}
+
+.bt{
+  font-size:2rem;
+   margin-top: 4rem;
+   background-color: black;
+   color:white;
+   
+ font-size: 800;
+  border-radius: 10px;
+  
+}
+
+#searchResults{
+  position: absolute;
+  top:5rem;
+  left:20%;
+  z-index: 10;
+  height:20rem;
+  overflow-y: auto;
+  /* : transparent; */
+  width: 26rem;
+}
+
+
+.list-group-item{
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  
+
+}
+
+
+ ::-webkit-scrollbar {
+  /* padding-left: 1rem; */
+  background : rgb(196, 193, 193);
+  width:0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem ;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem ;
+  /* margin-left: 0.5rem; */
+  /* margin-right: 15rem; */
+}
+
+.input-group{
+  border:none;
+  
+  position: absolute;
+  left: 0rem;
+  padding: 3rem;
+
+  z-index: 5;
+ 
+
+}
+
+.input-group input{
+  border: 2px solid white;
+  color:white;
+
+}
+.input-group button{
+  border-left-color: black;
+  border: 2px solid whitesmoke;
+  color: white;
+  /* background-color: bisque; */
+  
+}
+.other_col{
+  position: absolute;
+  border: 4px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  padding: 1rem;
+  width : 20rem;
+background-color: black;
+border-radius: 1rem;
+display: none;
+z-index : 10;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+/* .blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);Adjust the blur amount as needed 
+  z-index: 999; Make sure it's on top of everything */

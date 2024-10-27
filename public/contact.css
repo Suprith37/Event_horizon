@@ -1,0 +1,208 @@
+.contact-us-1-icon {
+  position: absolute;
+  top: 8.88rem;
+  left: 11.63rem;
+  border-radius: 29.54px;
+  width: 34.5rem;
+  height: 25.81rem;
+}
+.frame-child {
+  height: 16.88rem;
+}
+.desktop-4-inner {
+  position: absolute;
+  top: 6.88rem;
+  left: 52.81rem;
+  height: 24.94rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.contact-us1 {
+  line-height: 6.31rem;
+}
+.span {
+  font-size: 2.5rem;
+  line-height: 3.13rem;
+}
+.contact-us {
+  position: relative;
+  font-weight: 600;
+}
+.contact-us-wrapper {
+  width: 33.19rem;
+  height: 6.31rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 5.49rem;
+}
+.icon {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.wrapper {
+  width: 3.74rem;
+  height: 3.84rem;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0.32rem;
+  box-sizing: border-box;
+}
+.container,
+.div,
+.frame-group,
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+.div {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  line-height: 1.59rem;
+  font-weight: 600;
+}
+.container,
+.frame-group {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.container {
+  align-self: stretch;
+  flex: 1;
+  padding: 0.32rem;
+}
+.frame-group {
+  width: 15.5rem;
+  gap: 2.47rem;
+  font-size: 1.27rem;
+}
+.icon1 {
+  position: relative;
+  width: 3.13rem;
+  height: 2.84rem;
+  object-fit: cover;
+}
+.frame {
+  width: 3.86rem;
+  height: 3.96rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.33rem;
+  box-sizing: border-box;
+}
+.blank-line {
+  margin: 0;
+}
+.wwwlinkedincominxyz {
+  align-self: stretch;
+  position: relative;
+  line-height: 1.64rem;
+  font-weight: 600;
+  display: inline-block;
+  height: 3rem;
+  flex-shrink: 0;
+}
+.wwwlinkedincominxyz-wrapper {
+  align-self: stretch;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.33rem;
+}
+.frame-container {
+  width: 26.88rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 2.55rem;
+}
+.evnthorizongmailcom {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  line-height: 1.64rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.evnthorizongmailcom-wrapper,
+.frame-div,
+.frame-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.evnthorizongmailcom-wrapper {
+  width: 17.63rem;
+  height: 1.94rem;
+  padding: 0.33rem;
+  box-sizing: border-box;
+}
+.frame-div,
+.frame-parent {
+  gap: 2.55rem;
+}
+.frame-parent {
+  position: absolute;
+  top: 10.06rem;
+  left: 53rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.31rem;
+}
+.desktop-4 {
+  position: relative;
+  background-color: var(--backg-round-color);
+  width: 100%;
+  /* height: 42.15rem; */
+  height:100vh;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl-9);
+  color: var(--color-white);
+  font-family: var(--service-text);
+}
+
+
+html{
+  scroll-behavior: smooth;
+  
+} 
+
+.icon:hover{
+  transform: scale(2.5);
+  transition: transform 0.5s;
+}
+.icon{
+  transform: scale(2);
+  transition: transform 0.5s;
+}
+
+
+.icon1:hover{
+  transform: scale(1.5);
+  transition: transform 0.5s;
+}
+.icon1{
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+
+.icon1{
+  border-radius: 0.5rem;
+}

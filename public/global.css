@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --service-text: Poppins;
+
+  /* font sizes */
+  --font-size-xl-9: 1.31rem;
+  --service-text-size: 0.94rem;
+  --font-size-7xl: 1.63rem;
+  --font-size-6xl: 1.56rem;
+
+  /* Colors */
+  --backg-round-color: #000;
+  --color-white: #fff;
+  --text-color: #50282d;
+  --color-indianred: #be4545;
+
+  /* Gaps */
+  --gap-21xl-8: 2.55rem;
+  --gap-3xs: 0.63rem;
+
+  /* Paddings */
+  --padding-7xs-2: 0.33rem;
+  --padding-7xs-1: 0.32rem;
+  --padding-3xs: 0.63rem;
+
+  /* Border radiuses */
+  --br-21xl: 40px;
+  --br-23xl: 42px;
+  --br-3xs: 10px;
+
+  /* Effects */
+  --button-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3) inset;
+}
