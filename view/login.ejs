@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="desktop-11" id="bg_3" >
+      <img class="login_bg"src="mt1.avif">
+      <form action="/login" method="post"> 
+      <div class="login-parent"> 
+        <b class="login">Login</b>
+        <div class="parent" user_div>
+          <img
+            class="icon3"
+            id="i3"
+            alt="icon"
+            loading="eager"
+            src="icon.png" 
+            
+          />
+
+          <input
+            class="enter-username"
+            name="lemail"
+            id="username"
+            placeholder="Enter email"
+            type="email"
+            oninput="fillBackground('username','i3')"
+            required
+          />
+        </div>
+        <div class="parent" pass_div>
+          <img class="icon4" alt="" src="lock.png"  id="i4"/>
+
+          <input
+
+            class="enter-password"
+           
+            name="lpass"
+            id="pass2"
+            placeholder="Enter password"
+            type="password"
+            oninput="fillBackground('pass2','i4')"
+            required
+          />
+        </div>
+        <button class="live-wrapper" id="btn1" type="submit">
+          <div class="live">Login</div>
+        </button>
+        </div>
+      </form>
+    </div>
+    <script>
+
+      function fillBackground(ele, el){
+        var l = document.getElementById(ele);
+        var l2 = document.getElementById(el);
+
+        if(l.value.length <=0){
+          l.style.backgroundColor = "transparent";
+          l2.style.backgroundColor="white";
+          
+          
+
+        }
+        else{
+          l.style.color = "black"
+          l.style.backgroundColor = "whitesmoke"
+          l.style.fontWeight = "500";
+          l2.style.backgroundColor= "gold";
+
+
+        }
+      }
+
+    </script>
+  </body>
+</html>
