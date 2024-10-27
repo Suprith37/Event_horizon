@@ -77,14 +77,14 @@ const transporter = nodemailer.createTransport({
 
 var con = createConnection({
     host: "localhost",
-    user: "root",
-    password: "root123",
-    database:"event_horizon",
+    user: process.env.DB_USER_NAME,
+    password: process.env.DB_PASSWORD,
+    database:process.env.DB_NAME,
   });
 
   // --------------  Multer  -----------------
   const storage = multer.diskStorage({
-    destination: './uploads',
+    destination: process.env.EXEL_FOLDER,
     filename: (req, file, cb) => {
       // Use path.join to ensure correct path construction across different operating systems
       const filename = `${Date.now()}-${file.originalname}`;
@@ -104,64 +104,11 @@ let current_user_id = -1;
 // ---------------------- Deleting events all the time  -----------------
 
 
-const excelPath = `F:\\Practice_Project\\Event_horizon\\EH2-3\\Excel_files\\excelfirst.xlsx`;
+const excelPath = `process.env.EXEL_FOLDER\\process.env.EXCEL_FILE_NAME.xlsx`;
 
 cron.schedule('* * * * *',()=>{
 
-  // let c_n1= req.session.user.username;
-  // let c2 = req.session.user.user_id;
-  // console.log(c_n1+" "+c2);
-
  
-
-// var sql = `  Select First_name, Email from Sign_up where Sign_up.Id  In (Select User_id from event_registration where  End_date <= CURDATE() and End_time < CURTIME());`;
-
-// con.query(sql, (err,result)=>{
-//   if(err) console.log(err);
-
-//   for(var i = 0; i< result.length;i++){
-
-   
-
-//     var htmlContent =`<div><h1>Congragulation ^-^</h1><br></br>
-//   <h5>Congragulation ${result[i].First_name}on successfully cmompleting an event .<br></br>
-//   Hope You Had Maximum Audience</h5>
-// </div>`
-
-//   const RegmailOptions = {
-//     from: gmailEmail,  // sender address
-//     to:  result[i].Email,  // list of receivers
-//     subject: 'Successful Copletion Of Event',  // Subject line
-//     // text: 'Hello world? jbhvjv',  // plain text body
-//     // html: `<div class="main_mail"><h1>Successfull registered </h1><br>
-//     //       <p> Thanq you for Registering <strong> ${result.Event_name} <strong> <p>
-//     // <div>`
-
-//     html: htmlContent,
-//     attachments: [
-//       {
-//         filename: 'excelfirst.xlsx',
-//         path: excelPath,
-//       },
-//     ],
-  
-//   }
-
-
-//   transporter.sendMail(RegmailOptions, (error, info) => {
-//     if (error) {
-//         return console.error('Error:', error);
-//     }
-//     console.log('Message sent:', info.response);
-//     console.log("Event completed successfully");
-// })
-
-//   }
-
-// })
-
-
-
 var sql23 = `
 SELECT  r.Id as Id, et.Id as E_id, et.Event_name as Event_name , r.Email as Email from event_registration et join Sign_up r on et.User_id = r.Id 
 Where  et.End_date < CURDATE() OR ( et.End_date = CURDATE() AND et.End_time < CURTIME()) ;`
@@ -170,8 +117,6 @@ Where  et.End_date < CURDATE() OR ( et.End_date = CURDATE() AND et.End_time < CU
   con.query(sql23 , ( err, result)=>{
     if(err) console.log(err);
     console.log("rt : " + result);
-
-    // for(let i = 0 ; i<rt.length;i++){
 
     if(result !== undefined && result.length > 0 ){
     result.forEach(event=>{
@@ -210,10 +155,6 @@ Where  et.End_date < CURDATE() OR ( et.End_date = CURDATE() AND et.End_time < CU
             from: gmailEmail,  // sender address
             to:  event.Email,  // list of receivers
             subject: `Successful Copletion Of Event ${resu[0].Event_name}`,  // Subject line
-            // text: 'Hello world? jbhvjv',  // plain text body
-            // html: `<div class="main_mail"><h1>Successfull registered </h1><br>
-            //       <p> Thanq you for Registering <strong> ${result.Event_name} <strong> <p>
-            // <div>`
             attachments: [
               {
                 filename: 'excelfirst.xlsx',
@@ -262,16 +203,14 @@ Where  et.End_date < CURDATE() OR ( et.End_date = CURDATE() AND et.End_time < CU
     if(err) console.log(err);
     console.log("Result 1 : "+result);
     console.log("DEleted Registration_table")
-    // }
+ 
 
    })
    
    con.query(sq3,(err,result)=>{
     if(err) console.log(err);
     console.log("Result 2 : "+result);
-    console.log("DEleted tokens")
-    // }
-
+    console.log("DEleted tokens");
    })
 
    con.query(sql,(err,result)=>{
@@ -279,11 +218,6 @@ Where  et.End_date < CURDATE() OR ( et.End_date = CURDATE() AND et.End_time < CU
     console.log("Result 3 : "+result);
     console.log("DEleted events");
 
-    // else{
-      // req.session.user.username= c_n1;
-      // req.session.user.user_id = c2;
-    // console.log("Succefully deleted events : Event table");
-    // }
    })
 
   }
@@ -299,14 +233,11 @@ Where  et.End_date < CURDATE() OR ( et.End_date = CURDATE() AND et.End_time < CU
 
 //  -----------------  ALL gets  ---------------
 app.get("/",(req,res)=>{
-
-
     res.redirect("/home");
 })
 
 
 app.get("/home",(req,res)=>{
-  
   res.render("home.ejs");
   
 })
@@ -374,9 +305,7 @@ app.post("/signup",(req,res)=>{
     }
 
       else{
-        // alert("Eneter password correctly")
         cnt='password'
-      //  res.render("home.ejs");
       res.redirect("/signup?error=password");
       
       };
@@ -420,9 +349,6 @@ app.post("/login",(req,res)=>{
 console.log(req.body);
   console.log("req : "+email+" "+pass);
 
-  // con.connect((err)=>{
-  //   if(err) console.log(err);
-
     var sql = `select Id, Email,First_name  , Password from Sign_up where Email Like "${email}" && Password Like "${pass}" Limit 1`;
 
     con.query(sql,(err,result)=>{
@@ -435,7 +361,6 @@ console.log(req.body);
 
      else if(result.length >0){
 
-      // for(var i = 0 ; i<result.length ;i++){
      if(result[0].Email === email && result[0].Password === pass){
 
       current_user_id = result[0].Id;
@@ -461,10 +386,7 @@ console.log(req.body);
         console.log("Successfully Inserted");
       })
 
-// -------------------  ^^^^^^||||||^^^^^^  --------------------------
-
-
-      // req.session.saveUninitialized = true;
+// -------------------  ^^^^^^||||||^^^^^^  --------------------------;
     
         console.log("Successful login "+current_user_id+" name: "+result[0].First_name);
         current_user= true;
@@ -472,8 +394,6 @@ console.log(req.body);
 
 
       console.log(current_user," ",current_user_id);
-        // res.render("user",{user_name : result[i].Username});
-        // res.redirect("/user");
         var Name = result[0].First_name.substring(0,1)+ result[0].First_name.substring(1,result[0].First_name.length).toLowerCase();
         console.log(Name);
         res.redirect(`/user?data=${Name}`);
@@ -543,12 +463,6 @@ console.log("This is an Host registration page")
     const img_p = req.file.path.replace(/\\/g, '/');
     var clg_name1 = req.body.Clg_name 
 
-    
-
-  
-   
-  // console.log(req.body+" "+current_user_id);
-   
   
     var sql = `Insert Into event_registration(Event_name , Event_type , Start_date , End_date , Start_time , End_time ,College_name, Location, Phone_number, About_event , User_id, image_path, Guest_names) Values (?,?,?,?,?,?,?,?,?,?,?,?,?)`;
     var arr=[title,type,sd,ed,st,et,clg_name1,location,ph,abt,current_user_id,img_p, guest];
@@ -562,12 +476,9 @@ console.log("This is an Host registration page")
     con.query(sql,arr,(err,result)=>{
       if(err) console.log(err);
   
-      // var ids = result.insertId;
+    
       console.log("Successful : "+current_user_id);
       
-      // res.render("guest");
-      // res.redirect("/user");
-  
     });
 
     var sql = `select First_name  from Sign_up where Id = ${req.session.user.user_id}`
@@ -763,18 +674,6 @@ ORDER BY day, hour, min;
     
 
     if(req.query.term === 'Live'){
-    //   var sql = `SELECT Id , Event_name, Event_type , Hour(Start_time) as hour, MINUTE(Start_time) as min ,Day(Start_date) as day,MONTHNAME(Start_date) m_name , College_name, About_event, image_path from event_registration  where College_name Like "%${req.query.q}%" " AND Start_date = CURDATE()`;
-    //   con.query(sql,(err,result)=>{
-    //     if(err) console.log(err);
-    //   console.log(result);
-      
-    // res.render("user/user_events.ejs", {cards : result,user_name : curr_user_name,set_btn : true});
-    // });
-
-    // var sql = `SELECT Id , Event_name, Event_type , Hour(Start_time) as hour, MINUTE(Start_time) as min ,Day(Start_date) as day,MONTHNAME(Start_date) m_name ,
-    //  College_name, About_event, image_path ,Count(*) as total, 'Live' AS event_status from event_registration  
-    //  where  Start_date <= CURDATE() And End_date >= CURDATE() AND Start_time <= CURTIME() AND End_time >= CURTIME() And  College_name Like "%${req.query.q}%" "
-    //  Group by Id;`;
 
     var sql = ` 
     SELECT Id, Event_name, Event_type, HOUR(End_time) as E_hour, MINUTE(End_time) as E_min, DAY(End_date) as E_day, MONTHNAME(End_date) as E_m_name,Year(End_Date) as E_year , HOUR(Start_time) as hour, MINUTE(Start_time) as min, DAY(Start_date) as day, MONTHNAME(Start_date) as m_name, College_name, About_event, image_path,
@@ -792,20 +691,7 @@ WHERE Start_date <= CURDATE() AND (Start_date < CURDATE() OR (Start_date = CURDA
 
     }
     else if(req.query.term=== 'Up_comming'){
-    //   var sql = `SELECT Id ,Event_name, Event_type , Hour(Start_time) as hour, MINUTE(Start_time) as min ,Day(Start_date) as day,MONTHNAME(Start_date) m_name , College_name, About_event, image_path from event_registration  where College_name Like "%${req.query.q}%" " AND Start_date > CURDATE()`;
-    //   con.query(sql,(err,result)=>{
-    //     if(err) console.log(err);
-    //   console.log(result);
       
-    // res.render("user/user_events.ejs", {cards : result user_id : current_user_id,});
-    // });
-    
-    // var sql = `
-    // SELECT e.Id, Event_name, Event_type, HOUR(Start_time) as hour, MINUTE(Start_time) as min, DAY(Start_date) as day, MONTHNAME(Start_date) as m_name, College_name, About_event, image_path
-    // ,Count(*) as total,'Upcoming' AS event_status FROM event_registration e 
-    // where e.Id Not In ( Select r.Event_id from Registration_table r where r.User_id = ${current_user_id}) AND e.Start_date > CURDATE() AND College_name Like "%${req.query.q}%" " 
-    // Group by e.Id;`;
-
     var sql = `
     SELECT e.Id, Event_name, Event_type, HOUR(End_time) as E_hour, MINUTE(End_time) as E_min, DAY(End_date) as E_day, MONTHNAME(End_date) as E_m_name,Year(End_Date) as E_year , HOUR(Start_time) as hour, MINUTE(Start_time) as min, DAY(Start_date) as day, MONTHNAME(Start_date) as m_name, College_name, About_event, image_path
     ,(select count(*) from Registration_table rr where rr.Event_id = e.Id ) as total ,'Upcoming' AS event_status , 'Registered' as stat FROM event_registration e where  e.Id In ( Select r.Event_id from Registration_table r where r.User_id = ${req.session.user.user_id}) AND (e.Start_date > CURDATE() OR (e.Start_date = CURDATE() AND ( e.Start_time > CURTIME()))) AND College_name Like "%${req.query.q}%"  Group by e.Id
@@ -837,14 +723,6 @@ res.render("user/user_events.ejs", {cards : result,user_name : curr_user_name,co
 
 
  else{
-  //   var sql = `SELECT Id,  Event_name, Event_type , Hour(Start_time) as hour, MINUTE(Start_time) as min ,Day(Start_date) as day,MONTHNAME(Start_date) m_name , College_name, About_event, image_path from event_registration  where College_name Like "%${req.query.q}%" "`;
-  //   con.query(sql,(err,result)=>{
-  //     if(err) console.log(err);
-  //   console.log(result);
-    
-  // res.render("user/user_events.ejs", {cards : result}user_id : current_user_id,);
-  // });
-
   var sql = `
 
   WITH RegisteredEvents AS (
@@ -886,15 +764,11 @@ ORDER BY day, hour, min;
 
     if(err) console.log(err);
   console.log(result);
-  // card_d.push(result);
-  
-  
- 
+    
   res.render("user/user_events.ejs", {cards : result,user_name : curr_user_name, check:true ,color:"white",bg:"green"});
   });
 
-
-
+   
   }
 }
 
@@ -911,11 +785,6 @@ app.post("/Reg",(req,res)=>{
     console.log(event_id);
     console.log(url);
     console.log(token);
-
-    // const htmlFilePath = 'index.html';
-// var htmlContent = fs.readFileSync(htmlFilePath, 'utf8');
-
-
 
 
 var sq13 = `Insert into Registration_table(Event_id,User_id) Values (?,?);`;
@@ -973,22 +842,11 @@ con.query(sq13,[event_id, current_user_id],(err,result)=>{
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
   </html>`
-
- 
-
-  // fs.writeFileSync('index.html', htmlContent);
-
-
- 
+    
     const RegmailOptions = {
       from: gmailEmail,  // sender address
       to:  req.session.user.user_email,  // list of receivers
       subject: 'Successful registration',  // Subject line
-      // text: 'Hello world? jbhvjv',  // plain text body
-      // html: `<div class="main_mail"><h1>Successfull registered </h1><br>
-      //       <p> Thanq you for Registering <strong> ${result.Event_name} <strong> <p>
-      // <div>`
-
       html: htmlContent,
     
     }
@@ -1008,21 +866,9 @@ con.query(sq13,[event_id, current_user_id],(err,result)=>{
     })
     res.send({ m: event_id + " is Registered" });
   });
-  
-  //      Object.entries(placeholders).forEach(([placeholder, value]) => {
-  //     htmlContent = htmlContent.replace( value, new RegExp(placeholder, 'g'));
-  // });
-
   });
-
-
-
-  //----------------------------------------------------------
-
- 
-
-    
 })
+
 
 // -------------------  Profile  ------------------------------------------
 
@@ -1047,7 +893,6 @@ app.post("/logout",(req,res)=>{
     curr_user_name=" ";
     current_user=false;
     req.session.destroy();
-    // res.json("Successfully deleted")
     res.redirect("/home");
   })
 })
